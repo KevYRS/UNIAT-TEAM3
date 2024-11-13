@@ -20,7 +20,7 @@ public class Parallax : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         float deltaX = (cameraTransform.position.x - previousCameraPosition.x) * parallax_m;
         float moveAmount = cameraTransform.position.x * (1 - parallax_m);

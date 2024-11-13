@@ -13,10 +13,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce = 5.0f;
     //public CoinManager cm;
 
+
+    public GameObject anillo;
+    AudioSource sonidosJuego;
+    public AudioClip moneda;
+
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        anillo.gameObject.SetActive(true);
+        sonidosJuego = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(other.gameObject);
             cm.coinCount++;
+
+          sonidosJuego.PlayOneShot(moneda);
         }
     }*/
 }
