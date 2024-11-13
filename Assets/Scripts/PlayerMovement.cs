@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
     //public CoinManager cm;
 
 
-    public GameObject anillo;
-    AudioSource sonidosJuego;
-    public AudioClip moneda;
+    //public GameObject anillo;
+    //AudioSource sonidosJuego;
+    //public AudioClip moneda;
 
+
+   // public TextMeshProUGUI txtTimer;
+    //private float timeValue;
 
 
     void Start()
@@ -25,14 +29,41 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        anillo.gameObject.SetActive(true);
-        sonidosJuego = GetComponent<AudioSource>();
+        //anillo.gameObject.SetActive(true);
+        //sonidosJuego = GetComponent<AudioSource>();
+
+        //timeValue = 200;
     }
 
     void Update()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         transform.Translate(horizontal * runSpeed * Time.deltaTime, 0, 0);
+
+
+
+
+       /* timeValue -= Time.deltaTime;
+        txtTimer.text = FormatearTiempo(timeValue);
+
+
+
+        string FormatearTiempo(float timeValueo)
+        {
+
+            //Formateo minutos y segundos a dos dígitos
+            string minutos = Mathf.Floor(timeValue / 60).ToString("00");
+            string segundos = Mathf.Floor(timeValue % 60).ToString("00");
+
+            //Devuelvo el string formateado con : como separador
+            return minutos + ":" + segundos;
+
+        }
+
+
+        */
+
+
         if (horizontal > 0)
         {
             anim.SetBool("Walk", true);
