@@ -20,9 +20,11 @@ public class PlayerMovement : MonoBehaviour{
     //anillo
     public GameObject anillo;
 
-    //reproducir audio de recolectar anillo
+    //reproducir sonidos
     AudioSource sonidosJuego;
     public AudioClip moneda;
+    public AudioClip salto;
+    public AudioClip gameover;
 
     //ganaste, perdiste
     public TextMeshProUGUI ganaste;
@@ -40,7 +42,7 @@ public class PlayerMovement : MonoBehaviour{
         anillo.gameObject.SetActive(true);
         sonidosJuego = GetComponent<AudioSource>();
 
-        timeValue = 200;
+        timeValue = 50;
 
         Contador = 0;
 
@@ -60,7 +62,7 @@ public class PlayerMovement : MonoBehaviour{
 
         timeValue -= Time.deltaTime;
        
-       txtTimer.text = FormatearTiempo(timeValue);
+      txtTimer.text = FormatearTiempo(timeValue);
 
         
         string FormatearTiempo(float timeValueo){
@@ -90,6 +92,7 @@ public class PlayerMovement : MonoBehaviour{
         }
         if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001){
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            sonidosJuego.PlayOneShot(salto);
         }
 
 
@@ -116,15 +119,15 @@ public class PlayerMovement : MonoBehaviour{
 
         if (timeValue == 0)
         {
-
+            Time.timeScale = 0;
             //Destroy(gameObject);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
             anim.SetBool("Run", false);
             anim.SetBool("RunL", false);
-            Time.timeScale = 0;
-            //anim.SetBool("Idle", false);
+            
+            sonidosJuego.PlayOneShot(gameover);
 
 
         }
