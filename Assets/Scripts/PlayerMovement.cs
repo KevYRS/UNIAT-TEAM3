@@ -13,12 +13,18 @@ public class PlayerMovement : MonoBehaviour{
     [SerializeField] private float jumpForce = 5.0f;
     //public CoinManager cm;
 
+    //contador de anillos
+    public TextMeshProUGUI txtContador;
+    private int Contador;
 
-    //public GameObject anillo;
-    //AudioSource sonidosJuego;
-    //public AudioClip moneda;
+    //anillo
+    public GameObject anillo;
 
+    //reproducir audio de recolectar anillo
+    AudioSource sonidosJuego;
+    public AudioClip moneda;
 
+    //tiempo
     public TextMeshProUGUI txtTimer;
     private float timeValue;
 
@@ -27,17 +33,22 @@ public class PlayerMovement : MonoBehaviour{
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        //anillo.gameObject.SetActive(true);
-        //sonidosJuego = GetComponent<AudioSource>();
+        anillo.gameObject.SetActive(true);
+        sonidosJuego = GetComponent<AudioSource>();
 
         timeValue = 200;
+
+        Contador = 0;
     }
 
     void Update(){
         horizontal = Input.GetAxisRaw("Horizontal");
         transform.Translate(horizontal * runSpeed * Time.deltaTime, 0, 0);
 
-        
+
+        txtContador.text = "" + Contador; //score
+
+
         timeValue -= Time.deltaTime;
        
        txtTimer.text = FormatearTiempo(timeValue);
@@ -72,14 +83,15 @@ public class PlayerMovement : MonoBehaviour{
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
-    /*private void OnTriggerEnter2D(Collider2D other)
+    
+    
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("coin"))
+        if (other.gameObject.CompareTag("ring"))
         {
-            Destroy(other.gameObject);
-            cm.coinCount++;
-
-          sonidosJuego.PlayOneShot(moneda);
+            anillo.gameObject.SetActive(false);
+            Contador += 1;
+            sonidosJuego.PlayOneShot(moneda);
         }
-    }*/
+    }
 }
