@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour{
 
     private Rigidbody2D rb;
     private float horizontal;
     private Animator anim;
 
-    [SerializeField] private float runSpeed = 10.0f;
+    [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float jumpForce = 5.0f;
     //public CoinManager cm;
 
@@ -20,12 +19,11 @@ public class PlayerMovement : MonoBehaviour
     //public AudioClip moneda;
 
 
-   // public TextMeshProUGUI txtTimer;
+    //public TextMeshProUGUI txtTimer;
     //private float timeValue;
 
 
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -35,21 +33,15 @@ public class PlayerMovement : MonoBehaviour
         //timeValue = 200;
     }
 
-    void Update()
-    {
+    void Update(){
         horizontal = Input.GetAxisRaw("Horizontal");
         transform.Translate(horizontal * runSpeed * Time.deltaTime, 0, 0);
 
-
-
-
-       /* timeValue -= Time.deltaTime;
+        /*
+        timeValue -= Time.deltaTime;
         txtTimer.text = FormatearTiempo(timeValue);
 
-
-
-        string FormatearTiempo(float timeValueo)
-        {
+        string FormatearTiempo(float timeValueo){
 
             //Formateo minutos y segundos a dos dígitos
             string minutos = Mathf.Floor(timeValue / 60).ToString("00");
@@ -59,29 +51,22 @@ public class PlayerMovement : MonoBehaviour
             return minutos + ":" + segundos;
 
         }
-
-
         */
 
 
-        if (horizontal > 0)
-        {
-            anim.SetBool("Walk", true);
+        if (horizontal > 0){
+            anim.SetBool("Run", true);
         }
-        else
-        {
-            anim.SetBool("Walk", false);
+        else{
+            anim.SetBool("Run", false);
         }
-        if (horizontal < 0)
-        {
-            anim.SetBool("WalkL", true);
+        if (horizontal < 0){
+            anim.SetBool("RunL", true);
         }
-        else
-        {
-            anim.SetBool("WalkL", false);
+        else{
+            anim.SetBool("RunL", false);
         }
-        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001)
-        {
+        if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001){
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
     }
