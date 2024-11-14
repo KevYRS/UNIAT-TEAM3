@@ -3340,6 +3340,7 @@ MonoBehaviour:
   moneda: {fileID: 8300000, guid: 368ec5b4b84632a4cb9f75e1945ae87c, type: 3}
   salto: {fileID: 8300000, guid: cd9595309baa1ce41a8f65e82dd51970, type: 3}
   gameover: {fileID: 8300000, guid: b99efdf5e6073a544b86e90abdfdbd1e, type: 3}
+  ganar: {fileID: 8300000, guid: b3d3a93ca2c4bba428b9d5c5fc889b44, type: 3}
   ganaste: {fileID: 1993299933}
   perdiste: {fileID: 1270645512}
   txtTimer: {fileID: 219631809}
@@ -3355,8 +3356,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.586
-  m_Pitch: 1
+  m_Volume: 0.539
+  m_Pitch: 0.58
   Loop: 0
   Mute: 0
   Spatialize: 0

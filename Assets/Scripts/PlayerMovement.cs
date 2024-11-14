@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour{
     public AudioClip moneda;
     public AudioClip salto;
     public AudioClip gameover;
+    public AudioClip ganar;
 
     //ganaste, perdiste
     public TextMeshProUGUI ganaste;
@@ -105,13 +106,14 @@ public class PlayerMovement : MonoBehaviour{
 
             //Destroy(gameObject);
             ganaste.gameObject.SetActive(true);
+            sonidosJuego.PlayOneShot(ganar);
             runSpeed = 0;
             jumpForce = 0;
             anim.SetBool("Run", false);
             anim.SetBool("RunL", false);
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             //anim.SetBool("Idle", false);
-
+            
 
         }
 
@@ -119,15 +121,16 @@ public class PlayerMovement : MonoBehaviour{
 
         if (timeValue == 0)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             //Destroy(gameObject);
+            sonidosJuego.PlayOneShot(gameover);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
             anim.SetBool("Run", false);
             anim.SetBool("RunL", false);
             
-            sonidosJuego.PlayOneShot(gameover);
+           
 
 
         }
