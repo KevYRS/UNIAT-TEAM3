@@ -9,14 +9,14 @@ public class Parallax : MonoBehaviour
     private Transform cameraTransform;
     private Vector3 previousCameraPosition;
 
-    private float spriteWidth, startPosition;
+    //private float spriteWidth, startPosition;
 
 
     void Start()
     {
         cameraTransform = Camera.main.transform;
         previousCameraPosition = cameraTransform.position;
-        spriteWidth = transform.position.x;
+       // spriteWidth = transform.position.x;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Parallax : MonoBehaviour
         previousCameraPosition = cameraTransform.position;
 
 
-        if (moveAmount > startPosition + spriteWidth)
+       /* if (moveAmount > startPosition + spriteWidth)
         {
             transform.Translate(new Vector3(spriteWidth, 0, 0));
             startPosition += spriteWidth;
@@ -42,6 +42,8 @@ public class Parallax : MonoBehaviour
             startPosition -= spriteWidth;
 
         }
+
+        */
 
     }
 }
