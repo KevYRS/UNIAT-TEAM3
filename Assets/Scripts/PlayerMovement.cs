@@ -24,6 +24,10 @@ public class PlayerMovement : MonoBehaviour{
     AudioSource sonidosJuego;
     public AudioClip moneda;
 
+    //ganaste, perdiste
+    public TextMeshProUGUI ganaste;
+    public TextMeshProUGUI perdiste;
+
     //tiempo
     public TextMeshProUGUI txtTimer;
     private float timeValue;
@@ -39,6 +43,11 @@ public class PlayerMovement : MonoBehaviour{
         timeValue = 200;
 
         Contador = 0;
+
+        ganaste.gameObject.SetActive(false);
+        perdiste.gameObject.SetActive(false);
+
+
     }
 
     void Update(){
@@ -82,6 +91,46 @@ public class PlayerMovement : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001){
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
         }
+
+
+
+
+
+
+        if (Contador == 10)
+        {
+
+            //Destroy(gameObject);
+            ganaste.gameObject.SetActive(true);
+            runSpeed = 0;
+            jumpForce = 0;
+            anim.SetBool("Run", false);
+            anim.SetBool("RunL", false);
+            Time.timeScale = 0;
+            //anim.SetBool("Idle", false);
+
+
+        }
+
+
+
+        if (timeValue == 0)
+        {
+
+            //Destroy(gameObject);
+            perdiste.gameObject.SetActive(true);
+            runSpeed = 0;
+            jumpForce = 0;
+            anim.SetBool("Run", false);
+            anim.SetBool("RunL", false);
+            Time.timeScale = 0;
+            //anim.SetBool("Idle", false);
+
+
+        }
+
+
+
     }
     
     
@@ -89,9 +138,12 @@ public class PlayerMovement : MonoBehaviour{
     {
         if (other.gameObject.CompareTag("ring"))
         {
-            anillo.gameObject.SetActive(false);
+            //anillo.gameObject.SetActive(false);
+
+            Destroy(other.gameObject);
             Contador += 1;
             sonidosJuego.PlayOneShot(moneda);
+           
         }
     }
 }
