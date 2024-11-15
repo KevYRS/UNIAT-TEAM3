@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour{
 
     [SerializeField] private float runSpeed = 5.0f;
     [SerializeField] private float jumpForce = 5.0f;
-    //public CoinManager cm;
 
     //contador de anillos
     public TextMeshProUGUI txtContador;
@@ -49,23 +48,18 @@ public class PlayerMovement : MonoBehaviour{
 
         ganaste.gameObject.SetActive(false);
         perdiste.gameObject.SetActive(false);
-
-
     }
 
     void Update(){
         horizontal = Input.GetAxisRaw("Horizontal");
         transform.Translate(horizontal * runSpeed * Time.deltaTime, 0, 0);
 
-
         txtContador.text = "" + Contador; //score
-
 
         timeValue -= Time.deltaTime;
        
-      txtTimer.text = FormatearTiempo(timeValue);
+        txtTimer.text = FormatearTiempo(timeValue);
 
-        
         string FormatearTiempo(float timeValueo){
 
             //Formateo minutos y segundos a dos dígitos
@@ -74,10 +68,7 @@ public class PlayerMovement : MonoBehaviour{
 
             //Devuelvo el string formateado con : como separador
             return "Tiempo:" + minutos + ":" + segundos;
-
         }
-        
-        
 
         if (horizontal > 0){
             anim.SetBool("Run", true);
@@ -97,12 +88,7 @@ public class PlayerMovement : MonoBehaviour{
         }
 
 
-
-
-
-
-        if (Contador == 10)
-        {
+        if (Contador == 10){
 
             //Destroy(gameObject);
             ganaste.gameObject.SetActive(true);
@@ -113,14 +99,10 @@ public class PlayerMovement : MonoBehaviour{
             anim.SetBool("RunL", false);
             //Time.timeScale = 0;
             //anim.SetBool("Idle", false);
-            
-
         }
 
 
-
-        if (timeValue == 0)
-        {
+        if (timeValue == 0){
             //Time.timeScale = 0;
             //Destroy(gameObject);
             //sonidosJuego.PlayOneShot(gameover);
@@ -129,27 +111,17 @@ public class PlayerMovement : MonoBehaviour{
             jumpForce = 0;
             anim.SetBool("Run", false);
             anim.SetBool("RunL", false);
-            
-           
-
-
         }
-
-
-
     }
     
     
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("ring"))
-        {
+    private void OnTriggerEnter2D(Collider2D other){
+        if (other.gameObject.CompareTag("ring")){
             //anillo.gameObject.SetActive(false);
 
             Destroy(other.gameObject);
             Contador += 1;
             sonidosJuego.PlayOneShot(moneda);
-           
         }
     }
 }
