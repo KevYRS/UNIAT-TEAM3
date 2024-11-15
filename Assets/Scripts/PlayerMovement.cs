@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour{
 
             //Destroy(gameObject);
             ganaste.gameObject.SetActive(true);
-            sonidosJuego.PlayOneShot(ganar);
+            //sonidosJuego.PlayOneShot(ganar);
             runSpeed = 0;
             jumpForce = 0;
             anim.SetBool("Run", false);
@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour{
         {
             //Time.timeScale = 0;
             //Destroy(gameObject);
-            sonidosJuego.PlayOneShot(gameover);
+            //sonidosJuego.PlayOneShot(gameover);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
