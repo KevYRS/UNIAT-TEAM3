@@ -10,8 +10,8 @@ public class PauseMenuManager : MonoBehaviour
 
     AudioSource sonidos;
     public AudioClip pausa;
-
-
+    //public PlayerMovement contador2;
+    
     void Start ()
     {
         audioSource.Play();
@@ -35,6 +35,10 @@ public class PauseMenuManager : MonoBehaviour
                sonidos.PlayOneShot(pausa);
             }
         }
+
+        
+
+       
     }
 
     public void PauseGame()
@@ -72,5 +76,11 @@ public class PauseMenuManager : MonoBehaviour
 
         Application.Quit();
         Debug.Log("salio del juego");
+    }
+
+    public void Sonido()
+
+    {
+        audioSource.Stop();
     }
 }

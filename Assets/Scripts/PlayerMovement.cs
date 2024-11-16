@@ -25,11 +25,11 @@ public class PlayerMovement : MonoBehaviour{
     public AudioClip moneda;
     public AudioClip salto;
     public AudioClip gameover;
-    public AudioClip ganar;
+    //public AudioClip win;
 
     //ganaste, perdiste
-    public TextMeshProUGUI ganaste;
-    public TextMeshProUGUI perdiste;
+    public GameObject ganaste;
+    public GameObject perdiste;
 
     //tiempo
     public TextMeshProUGUI txtTimer;
@@ -41,10 +41,16 @@ public class PlayerMovement : MonoBehaviour{
     public float vidaActual;
     public float vidaMaxima;
 
+    public GameObject canvas2;
+    public GameObject canvas1;
+    public GameObject canvas3;
+    //public GameObject win;
 
-    
+    //public AudioSource win;
 
+    public PauseMenuManager music;
 
+    private bool canvas;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -65,6 +71,15 @@ public class PlayerMovement : MonoBehaviour{
         vidaActual = vidaMaxima;
 
         //camera.gameObject.SetActive(false);
+
+        
+        //win.Stop();
+
+
+
+       canvas1.gameObject.SetActive(true);
+        canvas2.gameObject.SetActive(false);
+        canvas3.gameObject.SetActive(false);
 
     }
 
@@ -112,14 +127,36 @@ public class PlayerMovement : MonoBehaviour{
         }
 
 
-        if (Contador == 18){
 
-            
-            
+
+       /* if(canvas == true)
+        {
+            canvas2.gameObject.SetActive(true);
+            canvas1.gameObject.SetActive(false);
+        }
+
+        if (canvas == false)
+        {
+            canvas2.gameObject.SetActive(false);
+            canvas1.gameObject.SetActive(true);
+        }
+
+        */
+        if (Contador == 31){
+
+
+
             //Destroy(gameObject);
             //camera.gameObject.SetActive(true);
+            // win.Play();
+           canvas2.gameObject.SetActive(true);
+            canvas1.gameObject.SetActive(false);
+            canvas3.gameObject.SetActive(false);
+
             ganaste.gameObject.SetActive(true);
-            //sonidosJuego.PlayOneShot(moneda);
+            music.Sonido();
+            //canvas = true;
+           //sonidosJuego.PlayOneShot(win);
             runSpeed = 0;
             jumpForce = 0;
             //anim.SetBool("Run", false);
@@ -134,7 +171,11 @@ public class PlayerMovement : MonoBehaviour{
             //Destroy(gameObject);
             //SceneManager.LoadScene("ganaste");
             //sonidosJuego.PlayOneShot(moneda);
+            canvas3.gameObject.SetActive(true);
+            canvas1.gameObject.SetActive(false);
+            canvas2.gameObject.SetActive(false);
             perdiste.gameObject.SetActive(true);
+            //perdiste.gameObject.SetActive(true);
             runSpeed = 0;
              jumpForce = 0;
             //anim.SetBool("Run", false);
@@ -146,12 +187,15 @@ public class PlayerMovement : MonoBehaviour{
         if (vidaActual <= 0)
         {
 
-
             Time.timeScale = 0;
             //Destroy(gameObject);
             //SceneManager.LoadScene("ganaste");
             //sonidosJuego.PlayOneShot(moneda);
+            canvas3.gameObject.SetActive(true);
+            canvas1.gameObject.SetActive(false);
+            canvas2.gameObject.SetActive(false);
             perdiste.gameObject.SetActive(true);
+            //perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
             //anim.SetBool("Run", false);
