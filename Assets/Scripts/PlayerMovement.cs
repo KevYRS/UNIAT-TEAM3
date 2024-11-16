@@ -65,22 +65,14 @@ public class PlayerMovement : MonoBehaviour{
 
         ganaste.gameObject.SetActive(false);
         perdiste.gameObject.SetActive(false);
-
-
         vidaMaxima = 3;
         vidaActual = vidaMaxima;
 
         //camera.gameObject.SetActive(false);
-
-        
         //win.Stop();
-
-
-
        canvas1.gameObject.SetActive(true);
         canvas2.gameObject.SetActive(false);
         canvas3.gameObject.SetActive(false);
-
     }
 
     void Update(){
@@ -122,30 +114,26 @@ public class PlayerMovement : MonoBehaviour{
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             sonidosJuego.PlayOneShot(salto);
         }
+        // Set Jump animation based on vertical velocity
+        if (Mathf.Abs(rb.velocity.y) > 0.85f){
+            anim.SetBool("Jump", true); // Player is in the air
+        }
         else{
-            anim.SetBool("Jump", false);
+            anim.SetBool("Jump", false); // Player is on the ground
         }
 
+        /* 
+         if(canvas == true){
+             canvas2.gameObject.SetActive(true);
+             canvas1.gameObject.SetActive(false);
+         }
 
-
-
-       /* if(canvas == true)
-        {
-            canvas2.gameObject.SetActive(true);
-            canvas1.gameObject.SetActive(false);
-        }
-
-        if (canvas == false)
-        {
-            canvas2.gameObject.SetActive(false);
-            canvas1.gameObject.SetActive(true);
-        }
-
-        */
+         if (canvas == false){
+             canvas2.gameObject.SetActive(false);
+             canvas1.gameObject.SetActive(true);
+         }
+         */
         if (Contador == 31){
-
-
-
             //Destroy(gameObject);
             //camera.gameObject.SetActive(true);
             // win.Play();
@@ -183,7 +171,6 @@ public class PlayerMovement : MonoBehaviour{
             txtTimer.gameObject.SetActive(false);
         }
 
-
         if (vidaActual <= 0)
         {
 
@@ -202,17 +189,8 @@ public class PlayerMovement : MonoBehaviour{
             //anim.SetBool("RunL", false);
             txtTimer.gameObject.SetActive(false);
         }
-
-
-
-
     }
 
-
-
-    
-    
-    
     private void OnTriggerEnter2D(Collider2D other){
         if (other.gameObject.CompareTag("ring")){
             //anillo.gameObject.SetActive(false);
@@ -221,10 +199,7 @@ public class PlayerMovement : MonoBehaviour{
             Contador += 1;
             sonidosJuego.PlayOneShot(moneda);
         }
-
-
-        if (other.gameObject.tag == "collider")
-        {
+        if (other.gameObject.tag == "collider"){
 
             transform.position = new Vector3(-6, -2, 0);
             vidaActual -= 1;
