@@ -38,6 +38,6 @@ public class PressEnterHandler : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         // Cambiar a la escena del juego
-        SceneManager.LoadScene("ganaste");
+        SceneManager.LoadScene("SampleScene");
     }
 }

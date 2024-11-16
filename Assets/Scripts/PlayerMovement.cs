@@ -119,7 +119,7 @@ public class PlayerMovement : MonoBehaviour{
             //Destroy(gameObject);
             //camera.gameObject.SetActive(true);
             ganaste.gameObject.SetActive(true);
-            sonidosJuego.PlayOneShot(moneda);
+            //sonidosJuego.PlayOneShot(moneda);
             runSpeed = 0;
             jumpForce = 0;
             //anim.SetBool("Run", false);
