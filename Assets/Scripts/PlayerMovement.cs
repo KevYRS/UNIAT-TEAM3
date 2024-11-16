@@ -110,7 +110,7 @@ public class PlayerMovement : MonoBehaviour{
             anim.SetBool("RunL", false);
         }
         if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001){
-            anim.SetBool("Jump", true);
+            //anim.SetBool("Jump", true);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             sonidosJuego.PlayOneShot(salto);
         }
@@ -171,8 +171,7 @@ public class PlayerMovement : MonoBehaviour{
             txtTimer.gameObject.SetActive(false);
         }
 
-        if (vidaActual <= 0)
-        {
+        if (vidaActual <= 0){
 
             Time.timeScale = 0;
             //Destroy(gameObject);
