@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour{
             string segundos = Mathf.Floor(timeValue % 60).ToString("00");
 
             //Devuelvo el string formateado con : como separador
-            return "Tiempo:" + minutos + ":" + segundos;
+            return "Time:" + minutos + ":" + segundos;
         }
 
         if (horizontal > 0){
