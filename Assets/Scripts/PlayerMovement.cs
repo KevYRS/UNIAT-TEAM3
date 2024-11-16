@@ -96,19 +96,19 @@ public class PlayerMovement : MonoBehaviour{
 
             //Destroy(gameObject);
             ganaste.gameObject.SetActive(true);
-            //sonidosJuego.PlayOneShot(ganar);
+            sonidosJuego.PlayOneShot(ganar);
             runSpeed = 0;
             jumpForce = 0;
             anim.SetBool("Run", false);
             anim.SetBool("RunL", false);
-            //Time.timeScale = 0;
+            Time.timeScale = 0;
             //anim.SetBool("Idle", false);
         }
 
-        if (timeValue == 0){
-            //Time.timeScale = 0;
+        if (timeValue <= 0){
+            Time.timeScale = 0;
             //Destroy(gameObject);
-            //sonidosJuego.PlayOneShot(gameover);
+            sonidosJuego.PlayOneShot(gameover);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
@@ -125,6 +125,13 @@ public class PlayerMovement : MonoBehaviour{
             Destroy(other.gameObject);
             Contador += 1;
             sonidosJuego.PlayOneShot(moneda);
+        }
+
+
+        if (other.gameObject.tag == "collider")
+        {
+
+            transform.position = new Vector3(-6, -2, 0);
         }
     }
 }
