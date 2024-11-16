@@ -83,8 +83,12 @@ public class PlayerMovement : MonoBehaviour{
             anim.SetBool("RunL", false);
         }
         if (Input.GetKeyDown(KeyCode.Space) && Mathf.Abs(rb.velocity.y) < 0.0001){
+            anim.SetBool("Jump", true);
             rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             sonidosJuego.PlayOneShot(salto);
+        }
+        else{
+            anim.SetBool("Jump", false);
         }
 
 
@@ -100,7 +104,6 @@ public class PlayerMovement : MonoBehaviour{
             //Time.timeScale = 0;
             //anim.SetBool("Idle", false);
         }
-
 
         if (timeValue == 0){
             //Time.timeScale = 0;
