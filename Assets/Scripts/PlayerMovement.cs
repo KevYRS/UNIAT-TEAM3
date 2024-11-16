@@ -36,6 +36,16 @@ public class PlayerMovement : MonoBehaviour{
     private float timeValue;
 
 
+    public TextMeshProUGUI vida1;
+    //private float vida;
+    public float vidaActual;
+    public float vidaMaxima;
+
+
+    
+
+
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -49,6 +59,13 @@ public class PlayerMovement : MonoBehaviour{
 
         ganaste.gameObject.SetActive(false);
         perdiste.gameObject.SetActive(false);
+
+
+        vidaMaxima = 3;
+        vidaActual = vidaMaxima;
+
+        //camera.gameObject.SetActive(false);
+
     }
 
     void Update(){
@@ -56,6 +73,8 @@ public class PlayerMovement : MonoBehaviour{
         transform.Translate(horizontal * runSpeed * Time.deltaTime, 0, 0);
 
         txtContador.text = "" + Contador; //score
+
+        vida1.text = "" + vidaActual;
 
         timeValue -= Time.deltaTime;
        
@@ -95,29 +114,59 @@ public class PlayerMovement : MonoBehaviour{
 
         if (Contador == 18){
 
+            
+            
             //Destroy(gameObject);
+            //camera.gameObject.SetActive(true);
             ganaste.gameObject.SetActive(true);
-            //sonidosJuego.PlayOneShot(ganar);
+            sonidosJuego.PlayOneShot(moneda);
             runSpeed = 0;
             jumpForce = 0;
             //anim.SetBool("Run", false);
             //anim.SetBool("RunL", false);
             Time.timeScale = 0;
             //anim.SetBool("Idle", false);
+            txtTimer.gameObject.SetActive(false);
         }
 
         if (timeValue <= 0){
             Time.timeScale = 0;
             //Destroy(gameObject);
             //SceneManager.LoadScene("ganaste");
-            //sonidosJuego.PlayOneShot(gameover);
+            //sonidosJuego.PlayOneShot(moneda);
+            perdiste.gameObject.SetActive(true);
+            runSpeed = 0;
+             jumpForce = 0;
+            //anim.SetBool("Run", false);
+            //anim.SetBool("RunL", false);
+            txtTimer.gameObject.SetActive(false);
+        }
+
+
+        if (vidaActual <= 0)
+        {
+
+
+            Time.timeScale = 0;
+            //Destroy(gameObject);
+            //SceneManager.LoadScene("ganaste");
+            //sonidosJuego.PlayOneShot(moneda);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
             //anim.SetBool("Run", false);
             //anim.SetBool("RunL", false);
+            txtTimer.gameObject.SetActive(false);
         }
+
+
+
+
     }
+
+
+
+    
     
     
     private void OnTriggerEnter2D(Collider2D other){
@@ -134,6 +183,7 @@ public class PlayerMovement : MonoBehaviour{
         {
 
             transform.position = new Vector3(-6, -2, 0);
+            vidaActual -= 1;
         }
     }
 }
