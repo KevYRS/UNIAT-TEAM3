@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour{
 
@@ -92,15 +93,15 @@ public class PlayerMovement : MonoBehaviour{
         }
 
 
-        if (Contador == 10){
+        if (Contador == 18){
 
             //Destroy(gameObject);
             ganaste.gameObject.SetActive(true);
-            sonidosJuego.PlayOneShot(ganar);
+            //sonidosJuego.PlayOneShot(ganar);
             runSpeed = 0;
             jumpForce = 0;
-            anim.SetBool("Run", false);
-            anim.SetBool("RunL", false);
+            //anim.SetBool("Run", false);
+            //anim.SetBool("RunL", false);
             Time.timeScale = 0;
             //anim.SetBool("Idle", false);
         }
@@ -108,12 +109,13 @@ public class PlayerMovement : MonoBehaviour{
         if (timeValue <= 0){
             Time.timeScale = 0;
             //Destroy(gameObject);
-            sonidosJuego.PlayOneShot(gameover);
+            //SceneManager.LoadScene("ganaste");
+            //sonidosJuego.PlayOneShot(gameover);
             perdiste.gameObject.SetActive(true);
             runSpeed = 0;
             jumpForce = 0;
-            anim.SetBool("Run", false);
-            anim.SetBool("RunL", false);
+            //anim.SetBool("Run", false);
+            //anim.SetBool("RunL", false);
         }
     }
     
